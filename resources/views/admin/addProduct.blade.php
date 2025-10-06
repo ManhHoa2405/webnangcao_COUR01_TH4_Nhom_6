@@ -20,7 +20,7 @@
 <header class="header">
     <!-- Logo -->
     <div class="logo-shop">
-        <a href="#">
+        <a href="/">
             <img src="{{ asset('images/logo.png') }}" alt="Diang Drink Logo" title="Trở về trang chủ">
         </a>
     </div>
