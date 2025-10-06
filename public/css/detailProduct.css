@@ -1,0 +1,456 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.top-banner {
+    background: linear-gradient(45deg,
+    rgb(142, 197, 252) 0%,
+    rgb(141, 211, 255) 25%,
+    rgb(161, 216, 255) 50%,
+    rgb(193, 210, 255) 75%,
+    rgb(224, 195, 255) 100%);
+    border-bottom: 5px solid #333 s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.header {
+    display: flex;
+    background: linear-gradient(45deg,
+    rgb(142, 197, 252) 0%,
+    rgb(141, 211, 255) 25%,
+    rgb(161, 216, 255) 50%,
+    rgb(193, 210, 255) 75%,
+    rgb(224, 195, 255) 100%);
+    align-items: center;   /* căn giữa theo chiều dọc */
+    justify-content: space-around;  /* logo - search - actions trải đều */
+    padding: 15px 40px;
+}
+
+.header-logo img {
+    display: block;
+    height: 100px; /* giữ đồng đều với search + actions */
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    background: #fcf7f5;
+    border-radius: 50px;
+    padding: 5px 10px;
+    width: 600px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+.header-search-btn {
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: transparent;
+}
+
+.header-search-btn img {
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.header-search-btn:hover{
+    transform: scale(1.2);
+}
+
+.header-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;   /* căn giữa icon và text */
+}
+
+.header-action {
+    display: flex;
+    flex-direction: column;   /* icon + chữ nằm ngang */
+    align-items: center;   /* căn giữa dọc */
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+    gap: 6px; /* khoảng cách giữa icon và chữ */
+    position: relative; /* để định vị số lượng sản phẩm */
+}
+
+.header-action img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.header-action:hover {
+    color: #007bff;
+}
+
+.header-action:hover img {
+  transform: scale(1.4);
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffffff;
+    padding: 10px 0;
+}
+
+.header-menu{
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-nav-link{
+    text-decoration: none;
+    color: #333;
+}
+
+.header-nav-link:hover{
+    color: #007bff;
+}
+
+.cart-count {
+    position: absolute;   /* định vị tuyệt đối so với .header-action */
+    top: -6px;            /* đẩy badge lên phía trên */
+    right: 16px;         /* đẩy badge ra mép phải */
+    background: red;      /* nền đỏ để nổi bật */
+    color: #fff;          /* chữ màu trắng */
+    font-size: 12px;      /* cỡ chữ nhỏ gọn */
+    font-weight: bold;    /* chữ đậm dễ nhìn */
+    padding: 2px 4px;     /* tạo khoảng trống xung quanh số */
+    border-radius: 50%;   /* bo tròn 100% để thành hình tròn/oval */
+    line-height: 1;       /* chỉnh chiều cao dòng, giúp chữ nằm giữa */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Hộp modal */
+.modal-content {
+    position: relative;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 600px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.3s ease;
+    margin: auto auto;
+}
+
+/* Tiêu đề */
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input */
+.modal-content input {
+    margin: 8px 0;
+}
+
+/* Nút */
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    background: #3498db;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.modal-content button:hover {
+    background: linear-gradient(45deg,
+    rgb(142, 197, 252) 0%,
+    rgb(141, 211, 255) 25%,
+    rgb(161, 216, 255) 50%,
+    rgb(193, 210, 255) 75%,
+    rgb(224, 195, 255) 100%);;
+}
+
+/* Text chuyển form */
+.switch-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+.switch-text a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+.switch-text a:hover {
+    text-decoration: underline;
+}
+
+/* Nút đóng */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: red;
+}
+
+/* Hiệu ứng */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+  /* đảm bảo input có chiều cao cố định, box-sizing để padding tính vào width */
+.password-wrapper input {
+    padding: 12px 44px 12px 12px; /* chừa 44px ở phải cho icon */
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 3; /* luôn trên input */
+    display: block;
+}
+
+.modal-content input,
+.password-wrapper input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    height: 44px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none; /* bỏ viền xanh/đen mặc định khi focus */
+}
+
+.remember-me{
+    display: flex;   /* Xếp checkbox + chữ nằm ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 5px; /* Tạo khoảng cách giữa checkbox và chữ */
+    font-size: 14px;
+}
+
+.remember-me input[type ="checkbox"]{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.address-select {
+    display: flex;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.address-select select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+
+
+.header-action.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    min-width: 200px;
+    padding: 10px;
+    z-index: 100;
+    border-radius: 8px;
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.1);
+}
+
+.header-action.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 6px;
+}
+
+.dropdown-content a:hover { 
+    color: #007bff;        
+}
+
+/* Nút trong dropdown (Đăng xuất) */
+.dropdown-content button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight:bold;
+}
+
+/* Hover cho nút logout */
+.dropdown-content button:hover {
+    color: #007bff;
+}
+
+.footer {
+  width: 100%;
+  padding: 40px 60px 20px;
+  background: linear-gradient(45deg,
+    rgb(142, 197, 252) 0%,
+    rgb(141, 211, 255) 25%,
+    rgb(161, 216, 255) 50%,
+    rgb(193, 210, 255) 75%,
+    rgb(224, 195, 255) 100%);
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-footer img {
+  height: 150px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-content > div {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.footer p,
+.footer a {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2c2929;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Phần follow us nằm dưới */
+.footer-bottom {
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 15px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
