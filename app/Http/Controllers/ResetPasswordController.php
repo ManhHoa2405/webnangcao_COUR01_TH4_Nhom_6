@@ -13,8 +13,7 @@ class ResetPasswordController extends Controller
     //
     use ResetsPasswords;
 
-    protected $redirectTo = '/'; // đổi thành trang bạn muốn sau khi reset xong
-
+    protected $redirectTo = '/'; 
      public function showResetForm($token)
     {
         return view('auth.reset-password', ['token' => $token]);

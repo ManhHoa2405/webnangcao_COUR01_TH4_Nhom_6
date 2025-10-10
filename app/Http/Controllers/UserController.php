@@ -10,20 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    // 1. Hiển thị danh sách user (dành cho admin)
     public function index()
     {
         $users = User::orderBy('id','desc')->paginate(10);
         return view('admin.customers', compact('users'));
     }
 
-    // 2. Form tạo (từ admin hoặc bạn dùng form register modal)
     public function create()
     {
-        return view('users.create'); // hoặc không cần nếu dùng modal
+        return view('users.create'); 
     }
 
-    // 3. Lưu user (dùng cho register hoặc admin add)
     public function store(Request $request)
     {
         $request->merge([
@@ -32,7 +29,7 @@ class UserController extends Controller
 
         $request->validate([
             'name' => 'required|max:100',
-            'email' => 'required|email|unique:user,email', // nếu bảng bạn là 'user' đổi thành unique:user,email
+            'email' => 'required|email|unique:user,email', 
             'password' => 'required|min:6|confirmed',
             // validate address
             'homeAddress' => 'required|string|max:255',
@@ -57,8 +54,7 @@ class UserController extends Controller
             'ward_id'     => $request->ward_id,
         ]);
 
-        // Nếu đây là register (tự động login người dùng mới)
-        if ($request->routeIs('register')) { // rẻ cách thử: hoặc bạn có thể check referrer
+        if ($request->routeIs('register')) { 
             Auth::login($user);
             return redirect()->route('home')->with('success','Đăng ký thành công');
         }
@@ -66,7 +62,6 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success','Tạo user thành công');
     }
 
-    // 4. Hiển thị 1 user
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -76,7 +71,6 @@ class UserController extends Controller
         return view('customerInfor', compact('user','provinces','districts','wards'));
     }
 
-    // 5. Form edit
     public function edit($id)
     {
         $user = User::with('address')->findOrFail($id);
@@ -86,8 +80,6 @@ class UserController extends Controller
         return view('admin.editCustomer', compact('user', 'provinces', 'districts', 'wards'));
     }
 
-
-    // 6. Cập nhật user
     public function update(Request $request, User $user)
     {
         $request->validate([
@@ -161,15 +153,12 @@ class UserController extends Controller
     }
 
 
-    // 7. Xóa user
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('users.index')->with('success','Xóa user thành công');
     }
-
-    // ---------- AUTH METHODS (dùng modal) ----------
 
     // Xử lý login từ modal
     public function login(Request $request)
@@ -193,11 +182,9 @@ class UserController extends Controller
         return back()->withErrors(['email' => 'Email hoặc mật khẩu không đúng'])->withInput();
     }
 
-    // Xử lý đăng ký từ modal (nếu bạn muốn route('register') gọi vào đây)
     public function register(Request $request)
     {
-        // Chỉ gọi nếu bạn không dùng store cho register
-        return $this->store($request); // tái sử dụng store
+        return $this->store($request); 
     }
     // Logout
     public function logout(Request $request)
@@ -208,12 +195,11 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 }
-// Mình tận dụng store() để tạo user; 
-// nếu form register gửi tới route('register'),
-//  hãy route tới UserController@register
-//  (mình map register() gọi store() để tiết kiệm).
+// tận dụng store() để tạo user; 
+//  form register gửi tới route('register'),
+//   route tới UserController@register
+//  ( map register() gọi store() ).
 
-// Nếu bảng của bạn 
 // là user thay vì users thì 
 // mọi chỗ unique:users,email đổi thành unique:user,email
 //  và Model thêm protected $table = 'user';.
