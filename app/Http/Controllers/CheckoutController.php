@@ -24,8 +24,8 @@ class CheckoutController extends Controller
         $orderNote = $request->input('order_note', '');
 
 
-        Log::debug($userId);
-        Log::debug('4444');
+        // Log::debug($userId);
+        // Log::debug('4444');
         $cartItems = Cart::where('user_id',auth()->id())
         ->where('status','new')
         ->with('product')
@@ -60,8 +60,8 @@ class CheckoutController extends Controller
         if ($total <= 0) {
         return back()->with('error', 'Đơn hàng không hợp lệ.');
         }
-        Log::debug($total);
-        Log::debug('11111111');
+        // Log::debug($total);
+        // Log::debug('11111111');
         // tao don hang
         $order = Order::create([
             'user_id' =>auth()->id(),
@@ -70,8 +70,8 @@ class CheckoutController extends Controller
             'note' =>$request->input('order_note', ''),
         ]);
 
-        Log::debug($order);
-        Log::debug('333333');
+        // Log::debug($order);
+        // Log::debug('333333');
         //tao chi tiet don hang
         foreach ($cartItems as $item) {
             OrderDetail::create([
@@ -82,8 +82,8 @@ class CheckoutController extends Controller
                 'quantity'      => $item->quantity,
             ]);
         }
-        Log::debug($total);
-        Log::debug('2222');
+        // Log::debug($total);
+        // Log::debug('2222');
         
         //thanh toan
         Payment::create([

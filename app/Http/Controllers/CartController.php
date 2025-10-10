@@ -33,6 +33,17 @@ class CartController extends Controller
     // Thêm sản phẩm vào giỏ
     public function store(Request $request)
     {
+        //Chua dang nhap
+        if(!auth()->check()){
+            if($request->ajax()){
+                return respone()->json([
+                    'error' => 'Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!',
+                    'requireLogin' => true,
+                ],401);
+            }
+             return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
+        }
+
         $request->validate([
             'product_id' => 'required|integer|exists:products,id',
             'quantity' => 'nullable|integer|min:1',
