@@ -39,7 +39,7 @@
             <img src="{{ asset('images/relationship.png') }}" alt="relationship-icon" title="Quản lý khách hàng">
             <span>Quản lý khách hàng</span>
         </a>
-        <a href="admin.orders.index" class="header-action">
+        <a href="{{ route('admin.orders.index')" class="header-action">
             <img src="{{ asset('images/clipboard.png') }}" alt="status-icon" title="Xem đơn hàng">
             <span>Trạng thái đơn hàng</span>
         </a>
